@@ -1,0 +1,27 @@
+<div id="<%= dom_id employment %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= employment.user_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Employer:</strong>
+    <%= employment.employer %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date started:</strong>
+    <%= employment.date_started %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date employment ended:</strong>
+    <%= employment.date_employment_ended %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this employment", employment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this employment', edit_employment_path(employment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

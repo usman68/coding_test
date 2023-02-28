@@ -1,0 +1,47 @@
+<%= tag.div data: {controller: "turbo-modal", action: "turbo:submit-end->turbo-modal#submitEnd"} do %>
+  <div class="modal_wrapper">
+    <div class="pop_up">
+      <%= form_with(model: employment, class: "contents")  do |form| %>
+        <div class="my-5">
+          <%#= form.label :user_id %>
+          <%#= form.number_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+          <%= form.hidden_field :user_id , value: @user.try(:id) || params[:user_id] %>
+        </div>
+
+        <div class="my-5">
+          <%= form.label :employer %>
+          <%= form.text_field :employer, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+          <% if employment.errors.has_key?(:employer) %>
+            <div class="error">
+              <%= employment.errors[:employer].first %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="my-5">
+          <%= form.label :date_started %>
+          <%= form.date_field :date_started, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" ,min: Date.today %>
+          <% if employment.errors.has_key?(:date_started) %>
+            <div class="error">
+              <%= employment.errors[:date_started].first %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="my-5">
+          <%= form.label :date_employment_ended %>
+          <%= form.date_field :date_employment_ended, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" ,min: Date.today%>
+          <% if employment.errors.has_key?(:date_employment_ended) %>
+            <div class="error">
+              <%= employment.errors[:date_employment_ended].first %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="inline">
+          <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" ,  data: { turbo_frame: "form-frame", disable_with: "Saving..." }%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<%end%>
